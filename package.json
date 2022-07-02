@@ -27,8 +27,5 @@
   "bugs": {
     "url": "https://github.com/mschaaf17/Exercise-Mern/issues"
   },
-  "homepage": "https://github.com/mschaaf17/Exercise-Mern#readme",
-  "dependencies": {
-    "workbox-webpack-plugin": "^6.5.3"
-  }
+  "homepage": "https://github.com/mschaaf17/Exercise-Mern#readme"
 }
