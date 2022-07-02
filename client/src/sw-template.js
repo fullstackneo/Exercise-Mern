@@ -1,30 +1,32 @@
-importScripts(
-  'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js'
-);
+if ('function' === typeof importScripts) {
+  importScripts(
+    'https://storage.googleapis.com/workbox-cdn/releases/5.5.0/workbox-sw.js'
+  );
+  /* global workbox */
+  if (workbox) {
+    console.log('Workbox is loaded');
 
-/* global workbox */
+    /* injection point for manifest files.  */
+    workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
-// workbox.core.skipWaiting();
+    /* custom cache rules*/
+    workbox.routing.registerNavigationRoute('/index.html', {
+      blacklist: [/^\/_/, /\/[^\/]+\.[^\/]+$/],
+    });
 
-/* injection point for manifest files.  */
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
-
-/* custom cache rules */
-const imageRoute = new workbox.routing.Route(
-  ({ request }) => {
-    return request.destination === 'image';
-  },
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: 'images',
-    plugins: [
-      // Ensure that once this runtime cache reaches a maximum size the
-      // least-recently used images are removed.
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 30 * 24 * 60 * 60,
-      }),
-    ],
-  })
-);
-
-workbox.routing.registerRoute(imageRoute);
+    workbox.routing.registerRoute(
+      /\.(?:png|gif|jpg|jpeg)$/,
+      workbox.strategies.cacheFirst({
+        cacheName: 'images',
+        plugins: [
+          new workbox.expiration.Plugin({
+            maxEntries: 60,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+          }),
+        ],
+      })
+    );
+  } else {
+    console.log('Workbox could not be loaded. No Offline support');
+  }
+}
