@@ -1,13 +1,14 @@
 importScripts(
   'https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js'
 );
+import precacheAndRoute from 'workbox-precaching';
 
 /* global workbox */
 
 // workbox.core.skipWaiting();
 
 /* injection point for manifest files.  */
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute(self.__WB_MANIFEST);
 
 /* custom cache rules */
 const imageRoute = new workbox.routing.Route(
