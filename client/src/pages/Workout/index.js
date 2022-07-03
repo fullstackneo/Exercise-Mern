@@ -13,7 +13,6 @@ import armWorkouts from '../../assets/images/arm-workout.png';
 import legWorkouts from '../../assets/images/leg-workout.png';
 import abWorkouts from '../../assets/images/ab-workout.png';
 
-
 export default function Workout() {
   const [time, setTime] = useState(0);
 
