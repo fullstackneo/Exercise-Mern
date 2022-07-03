@@ -12,7 +12,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Home from './pages/Home';
-import Ranking from './pages/Ranking/';
+import Ranking from './pages/Ranking/index.js';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Workout from './pages/Workout/index.js';

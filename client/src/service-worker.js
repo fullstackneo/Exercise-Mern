@@ -12,13 +12,6 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
-import { generateSW } from 'workbox-build';
-
-generateSW({
-  swDest: './build/service-worker.js',
-  globDirectory: './build',
-  globPatterns: ['**/*.{html,js,css}'],
-});
 
 clientsClaim();
 

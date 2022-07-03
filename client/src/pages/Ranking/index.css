@@ -23,7 +23,7 @@
   /* height: 2.5rem; */
   position: relative;
   padding: 0 0.2rem 0.2rem;
-
+  background-image: url('../../assets/images/line.jpg');
   /* margin-bottom: 0.25rem; */
   border: 1px solid #1089e7;
 }
